@@ -102,19 +102,19 @@ jobs:
         with:
           name: wheel-and-sdist
           path: ./dist/
-      - name: Install twine
-        run: |
-          pip install twine
-      - name: Publish to TestPyPI
-        run: |
-          /bin/bash -x run.sh publish:test
-        env:
-          TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
-      - name: Publish to Prod PyPI
-        run: |
-          /bin/bash -x run.sh publish:prod
-        env:
-          PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN }}
+      # - name: Install twine
+      #   run: |
+      #     pip install twine
+      # - name: Publish to TestPyPI
+      #   run: |
+      #     /bin/bash -x run.sh publish:test
+      #   env:
+      #     TEST_PYPI_TOKEN: {% raw %}${{ secrets.TEST_PYPI_TOKEN }}{% endraw %}
+      # - name: Publish to Prod PyPI
+      #   run: |
+      #     /bin/bash -x run.sh publish:prod
+      #   env:
+      #     PROD_PYPI_TOKEN: {% raw %}${{ secrets.PROD_PYPI_TOKEN }}{% endraw %}
       - name: Push tags
         run: |
           git push origin --tags
@@ -125,18 +125,18 @@ jobs:
     steps:
       - name: Dump GitHub context
         id: github_context_step
-        run: echo '${{ toJSON(github) }}'
+        run: echo '{% raw %}${{ toJSON(github) }}{% endraw %}'
       - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
+        run: echo '{% raw %}${{ toJSON(job) }}{% endraw %}'
       - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
+        run: echo '{% raw %}${{ toJSON(steps) }}{% endraw %}'
       - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
+        run: echo '{% raw %}${{ toJSON(runner) }}{% endraw %}'
       - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
+        run: echo '{% raw %}${{ toJSON(strategy) }}{% endraw %}'
       - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
+        run: echo '{% raw %}${{ toJSON(matrix) }}{% endraw %}'
       - name: Dump secrets
-        run: echo '${{ toJSON(secrets) }}'
+        run: echo '{% raw %}${{ toJSON(secrets) }}{% endraw %}'
       - name: Dump vars
-        run: echo '${{ toJSON(vars) }}'
+        run: echo '{% raw %}${{ toJSON(vars) }}{% endraw %}'

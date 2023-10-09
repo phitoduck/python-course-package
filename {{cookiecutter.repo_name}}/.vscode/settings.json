@@ -26,7 +26,6 @@
             "source.organizeImports": true
         },
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "ms-python.black-formatter",
     },
     "python.analysis.autoImportCompletions": true,
     "python.analysis.indexing": true,
@@ -42,5 +41,4 @@
             "color": "lightgreen"
         }
     ],
-    "python.formatting.provider": "none",
 }

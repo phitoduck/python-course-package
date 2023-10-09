@@ -1,3 +1,33 @@
+[build-system]
+# Minimum requirements for the build system to execute.
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# [tool.setuptools.package-data]
+# example_pkg = ["*.json"]
+
+[project]
+name = "python-course-package"
+authors = [{ name = "Eric Riddoch", email = "some-email@gmail.com" }]
+description = "My package description"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["one", "two"]
+license = { text = "MIT" }
+classifiers = ["Programming Language :: Python :: 3"]
+dependencies = ["numpy", 'importlib-metadata; python_version<"3.8"']
+dynamic = ["version"]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
+release = ["build", "twine"]
+static-code-qa = ["pre-commit"]
+dev = ["python-course-package[test,release,static-code-qa]"]
+
+# docs: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
+[tool.setuptools.dynamic]
+version = { file = "version.txt" }
+
 [tool.pytest.ini_options]
 markers = ["slow: marks tests as slow (deselect with '-m \"not slow\"')"]
 
