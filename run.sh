@@ -14,7 +14,7 @@ function install {
 function generate-project {
     cookiecutter ./ \
         --output-dir "$THIS_DIR/sample"
-    
+
     cd "$THIS_DIR/sample"
     cd $(ls)
     git init
