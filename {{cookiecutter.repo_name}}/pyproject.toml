@@ -3,8 +3,8 @@
 requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
-# [tool.setuptools.package-data]
-# example_pkg = ["*.json"]
+[tool.setuptools.package-data]
+example_pkg = ["*.json"]
 
 [project]
 name = "python-course-package"
