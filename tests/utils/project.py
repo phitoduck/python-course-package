@@ -14,10 +14,10 @@ def initialize_git_repo(repo_dir: Path):
     subprocess.run(["git", "commit", "-m", "initial commit by pytest"], cwd=repo_dir, check=True)
 
 
-def generate_project(template_values: Dict[str, str]) -> Path:
+def generate_project(template_values: Dict[str, str], test_session_id: str) -> Path:
     template_values: Dict[str, str] = deepcopy(template_values)
     cookiecutter_config = {"default_context": template_values}
-    cookiecutter_config_fpath = PROJECT_DIR / "cookiecutter-test-config.json"
+    cookiecutter_config_fpath = PROJECT_DIR / f"cookiecutter-{test_session_id}.json"
     cookiecutter_config_fpath.write_text(json.dumps(cookiecutter_config))
 
     command = [
