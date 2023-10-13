@@ -1,0 +1,40 @@
+name: Lint and Test
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  lint-format-and-static-code-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      - name: Install pre-commit
+        run: |
+          pip install pre-commit
+      - name: Lint, Format, and other static code quality checks
+        run: |
+          /bin/bash -x run.sh lint:ci
+
+  execute-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      - name: Install test dependencies
+        run: |
+          pip install pytest pytest-cov
+      - name: Execute tests against the installed package
+        run: |
+          /bin/bash -x run.sh test:ci
